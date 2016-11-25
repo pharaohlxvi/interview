@@ -1,1 +1,9 @@
-{}
+{
+  "name": "John Smith",
+  "interests": [
+  ],
+  "location": {
+    "lat": "51.4722698",
+    "lng": "-0.1657213"
+  }
+}

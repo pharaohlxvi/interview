@@ -2,7 +2,7 @@
   "name": "John Smith",
   "interests": [
   ],
-  "location": {
+  "geo": {
     "lat": "51.4722698",
     "lng": "-0.1657213"
   }

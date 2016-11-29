@@ -6,13 +6,13 @@ https://docs.docker.com/engine/installation/
 
 https://docs.docker.com/compose/install/
 
-Run `docker-compose up`
+Run `docker-compose up` in the root of the repo
 
 ### Task
 
 Fork this repo.
 
-Using the JSON data provided in the data folder create a single page using PHP to display a list of articles and a list of recommended events. It is up to you determine the recommended criteria.
+Using the JSON data provided in the data folder create a single page using PHP to display a list of articles and a list of recommended events. It is up to you determine the recommended criteria and ordering.
 
 Please base the design on the provided PSD or PNG.
 

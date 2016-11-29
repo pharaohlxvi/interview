@@ -9,6 +9,7 @@ https://docs.docker.com/compose/install/
 Run `docker-compose up` in the root of the repo
 
 To access the running project you can then use:
+
 http://localhost:8080
 
 ### Task

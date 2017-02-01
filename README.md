@@ -16,7 +16,9 @@ http://localhost:8080
 
 Fork this repo.
 
-Using the JSON data provided in the data folder, create a single page using PHP to display a list of articles and a list of recommended events. It is up to you to determine the recommended criteria and ordering.
+Using the JSON data provided in the data folder, create a single page using PHP to display a list of articles and a list of recommended events.
+
+It is up to you to determine the recommended criteria and ordering. But you can assume the user is already logged in and their information is provided in the users.json file.
 
 Please base the design on the provided PSD or PNG.
 

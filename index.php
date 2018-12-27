@@ -10,6 +10,15 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""
+    />
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+      integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+      crossorigin="">
+    </script>
+	  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js"></script>
   </head>
   <body>
     <?php include ('./data.php'); ?>
@@ -29,77 +38,19 @@
 
         <div class="articles_list">
 
-          <div class="article">
+          <?php foreach ($articles as $article): ?>
+            <div class="article">
             <div class="article_title">
-              <p><?php echo $articles[0]->title; ?></p>
+              <p><?php echo $article->title; ?></p>
             </div>
             <div class="article_img">
-              <img src="<?php echo $articles[0]->image; ?>" alt="">
+              <img src="<?php echo $article->image; ?>" alt="">
             </div>
             <div class="article_text">
-              <?php echo $articles[0]->content; ?>
+              <?php echo $article->content; ?>
             </div>
           </div>
-
-          <div class="article">
-            <div class="article_title">
-              <p><?php echo $articles[1]->title; ?></p>
-            </div>
-            <div class="article_img">
-              <img src="<?php echo $articles[1]->image; ?>" alt="">
-            </div>
-            <div class="article_text">
-              <?php echo $articles[1]->content; ?>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="article_title">
-              <p><?php echo $articles[2]->title; ?></p>
-            </div>
-            <div class="article_img">
-              <img src="<?php echo $articles[2]->image; ?>" alt="">
-            </div>
-            <div class="article_text">
-              <?php echo $articles[2]->content; ?>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="article_title">
-              <p><?php echo $articles[3]->title; ?></p>
-            </div>
-            <div class="article_img">
-              <img src="<?php echo $articles[3]->image; ?>" alt="">
-            </div>
-            <div class="article_text">
-              <?php echo $articles[3]->content; ?>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="article_title">
-              <p><?php echo $articles[4]->title; ?></p>
-            </div>
-            <div class="article_img">
-              <img src="<?php echo $articles[4]->image; ?>" alt="">
-            </div>
-            <div class="article_text">
-              <?php echo $articles[4]->content; ?>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="article_title">
-              <p><?php echo $articles[5]->title; ?></p>
-            </div>
-            <div class="article_img">
-              <img src="<?php echo $articles[5]->image; ?>" alt="">
-            </div>
-            <div class="article_text">
-              <?php echo $articles[5]->content; ?>
-            </div>
-          </div>
+          <?php endforeach; ?>
 
         </div>
       </div>
@@ -109,33 +60,49 @@
           <h3>Events</h3>
         </div>
         <div class="events_body">
-          <div class="event">
-            <span class="event_title"><strong><?php echo $events[$interests[0] - 1]->title; ?></strong></span>
-            <p><strong>Location: </strong><?php echo $events[$interests[0] - 1]->location; ?></p>
-            <p><strong>Date: </strong><?php echo $events[$interests[0] - 1]->date; ?></p>
-          </div>
 
-          <div class="event">
-            <span class="event_title"><strong><?php echo $events[$interests[1] - 1]->title; ?></strong></span>
-            <p><strong>Location: </strong><?php echo $events[$interests[1] - 1]->location; ?></p>
-            <p><strong>Date: </strong><?php echo $events[$interests[1] - 1]->date; ?></p>
-          </div>
+          <?php foreach ($interests as $interest): ?>
+            <div class="event">
+              <span class="event_title"><strong><?php echo $events[$interest - 1]->title; ?></strong></span>
+              <p><strong>Location: </strong><?php echo $events[$interest - 1]->location; ?></p>
+              <p><strong>Date: </strong><?php echo $events[$interest - 1]->date; ?></p>
+            </div>
+          <?php endforeach; ?>
 
-          <div class="event">
-            <span class="event_title"><strong><?php echo $events[$interests[2] - 1]->title; ?></strong></span>
-            <p><strong>Location: </strong><?php echo $events[$interests[2] - 1]->location; ?></p>
-            <p><strong>Date: </strong><?php echo $events[$interests[2] - 1]->date; ?></p>
-          </div>
+          <div id="mapid"></div>
 
-          <div class="event">
-            <span class="event_title"><strong><?php echo $events[$interests[3] - 1]->title; ?></strong></span>
-            <p><strong>Location: </strong><?php echo $events[$interests[3] - 1]->location; ?></p>
-            <p><strong>Date: </strong><?php echo $events[$interests[3] - 1]->date; ?></p>
           </div>
         </div>
       </div>
 
+      <!-- <div id="mapid"></div> -->
+
     </div>
-    <script src="" async defer></script>
+
+        <script>
+          var mymap = L.map('mapid').setView([<?php echo $user->geo->lat ?>, <?php echo $user->geo->lng ?>], 10);
+
+          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoicGhhcmFvaGx4dmkiLCJhIjoiY2pxNnZkajVjMjk5dDN4cDNseTUzeTJidiJ9.3TlNJ6lhRF4KzQUzowo9Tg'
+          }).addTo(mymap);
+
+          var userMarker = 
+            L.marker([<?php echo $user->geo->lat ?>, <?php echo $user->geo->lng ?>])
+            .addTo(mymap)
+            .bindPopup("Your location").openPopup();
+
+          <?php foreach ($events as $e): ?>
+
+            var eventMarker = L.marker([<?php echo $e->geo->lat ?>, <?php echo $e->geo->lng ?>]).addTo(mymap);
+          
+          <?php endforeach; ?>
+          
+        </script>
+
+    </script>
+
   </body>
 </html>

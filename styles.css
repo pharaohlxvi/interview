@@ -84,7 +84,7 @@ header {
 
 .article_text {
   flex-grow: 1;
-  margin-top: -14px;
+  margin-top: -4px;
   padding: 20px 15px 30px 15px;
   border-left: 2px solid #e7e7e7;
   border-right: 2px solid #e7e7e7;
@@ -147,4 +147,9 @@ header {
 
 .event p {
   margin: 5px 0 -3px 0;
+}
+
+/* Map */
+#mapid {
+  height: 500px;
 }

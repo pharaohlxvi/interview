@@ -25,8 +25,6 @@
     foreach ($user->interests as $interest) {
       if (in_array($interest, $event->tags)) {
         $interests[$event->id] += 1;
-        // var_dump($interests);
-        // echo key($interests);
       };
     };
   };

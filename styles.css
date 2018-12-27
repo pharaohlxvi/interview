@@ -93,9 +93,7 @@ header {
 }
 
 .article_text p {
-  /* height: 100%; */
   margin: 0;
-  /* font-size: 80%; */
 }
 
 /* Events */
@@ -120,16 +118,8 @@ header {
 .events_body {
   background-color: #f8f8f8;
   font-size: 0.8rem;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
   padding: 0 20px;
-  /* height: auto; */
   flex: 1;
-  /* box-flex: 1; */
-  /* height: 100%; */
-  /* align-self: stretch; */
-  /* align-items: stretch; */
-  /* flex-direction: column; */
 }
 
 .event {
@@ -137,8 +127,6 @@ header {
   border-bottom: 2px solid #e7e7e7;
   margin-bottom: 20px;
   padding: 20px;
-  /* flex-grow: 1; */
-  /* width: 100%; */
 }
 
 .event_title {

@@ -25,10 +25,12 @@
     foreach ($user->interests as $interest) {
       if (in_array($interest, $event->tags)) {
         $interests[$event->id] += 1;
-        var_dump($interests);
+        // var_dump($interests);
+        // echo key($interests);
       };
     };
   };
   // Sort array in descending order
   arsort($interests);
+  $interests = array_keys($interests);
 ?>
